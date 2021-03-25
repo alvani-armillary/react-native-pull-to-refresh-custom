@@ -19,6 +19,7 @@ export interface Props {
     onRefresh: () => void;
     children: JSX.Element;
     topPullThreshold: number;
+    onScrollCustom?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 interface State {
     containerTop: Animated.Value;

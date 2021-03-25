@@ -45,6 +45,7 @@ export interface Props {
     children: JSX.Element;
     // 内部滚动组件，contentOffset.y <= topPullThreshold 时，触发顶部的下拉刷新动作
     topPullThreshold: number;
+    onScrollCustom?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 interface State {
@@ -233,6 +234,7 @@ export default class PullToRefresh extends Component<Props, State> {
     innerScrollCallback = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         this.innerScrollTop = event.nativeEvent.contentOffset.y;
         this.checkScroll();
+        this.props.onScrollCustom && this.props.onScrollCustom(event);
     };
 
     checkScroll = () => {
